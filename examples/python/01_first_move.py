@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────────────
+#  Example 01 — First Move
+#  Category  : Movement / 2WD
+#  Level     : Beginner
+#
+#  Your very first robot movement!
+#  The robot drives forward for 30 cm, then stops.
+#
+#  Before running:
+#    • Make sure your robot is on the floor with space ahead
+#    • Check that Left Motor = 1 and Right Motor = 2
+# ─────────────────────────────────────────────────────────────────────
+import ag
+import time
+
+ag.Begin()
+
+# Set up the robot — tell it which motors are left and right,
+# and the size of the wheels and the distance between them
+ag.setMovementMotors(1, 2)           # Left motor=1, Right motor=2
+ag.setMovementWheelDiameter(80)      # Wheel diameter in mm
+ag.setMovementWheelbase(185)         # Distance between wheels in mm
+
+# Set how fast the robot moves (0–100%)
+ag.setMovementSpeed(50)
+
+# Drive forward 30 cm, then wait until it arrives before continuing
+ag.moveForward(30, 'cm', True)
+
+# Stop the motors
+ag.stopMoving()
+
+ag.End()

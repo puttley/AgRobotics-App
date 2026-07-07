@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgRobotics Programming App — User Guide</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#1a2a1a;color:#e8f0e8;
+    padding:0;margin:0;font-size:15px;line-height:1.7;}
+
+  /* ── Layout ── */
+  #sidebar{position:fixed;left:0;top:0;bottom:0;width:220px;background:#0d1a0d;
+    border-right:1px solid #2a4a2a;overflow-y:auto;padding:20px 0;z-index:100;}
+  #content{margin-left:220px;padding:40px 48px;max-width:860px;}
+
+  /* ── Sidebar ── */
+  .sidebar-logo{padding:0 16px 20px;border-bottom:1px solid #2a4a2a;margin-bottom:12px;}
+  .sidebar-logo-title{font-size:.9rem;font-weight:700;color:#4aa85e;
+    font-family:Georgia,serif;line-height:1.3;}
+  .sidebar-logo-sub{font-size:.65rem;color:rgba(255,255,255,.4);
+    text-transform:uppercase;letter-spacing:.1em;margin-top:2px;}
+  .nav-section{padding:6px 16px 2px;font-size:.6rem;font-weight:800;
+    color:#4a7a4a;letter-spacing:.12em;text-transform:uppercase;margin-top:8px;}
+  .nav-link{display:block;padding:5px 16px 5px 20px;font-size:.78rem;
+    color:rgba(255,255,255,.65);text-decoration:none;border-left:2px solid transparent;
+    transition:color .15s,border-color .15s;}
+  .nav-link:hover{color:#4aa85e;border-left-color:#4aa85e;}
+  .nav-link.active{color:#4aa85e;border-left-color:#4aa85e;font-weight:700;}
+
+  /* ── Content headings ── */
+  h1{font-family:Georgia,serif;font-size:2rem;font-weight:700;color:#4aa85e;
+    margin-bottom:8px;line-height:1.2;}
+  .guide-intro{font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:40px;
+    padding-bottom:24px;border-bottom:1px solid #2a4a2a;}
+  h2{font-family:Georgia,serif;font-size:1.35rem;font-weight:700;color:#e8f0e8;
+    margin:48px 0 16px;padding-top:8px;}
+  h2:first-of-type{margin-top:0;}
+  h3{font-size:1rem;font-weight:700;color:#4aa85e;margin:28px 0 10px;}
+  p{margin-bottom:14px;color:rgba(255,255,255,.85);}
+  p:last-child{margin-bottom:0;}
+
+  /* ── Section anchors ── */
+  .section{scroll-margin-top:24px;}
+
+  /* ── Tip/warning boxes ── */
+  .tip,.warn,.note{border-radius:8px;padding:14px 16px;margin:20px 0;
+    font-size:.85rem;line-height:1.6;}
+  .tip{background:rgba(74,168,94,.12);border-left:3px solid #4aa85e;}
+  .tip strong{color:#4aa85e;}
+  .warn{background:rgba(200,92,0,.12);border-left:3px solid #c85c00;}
+  .warn strong{color:#c85c00;}
+  .note{background:rgba(42,90,154,.15);border-left:3px solid #2a5a9a;}
+  .note strong{color:#7ab0e8;}
+
+  /* ── Steps ── */
+  .steps{counter-reset:step;margin:20px 0;}
+  .step{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
+  .step-num{counter-increment:step;content:counter(step);
+    min-width:28px;height:28px;border-radius:50%;
+    background:#4aa85e;color:#0d1a0d;font-weight:800;font-size:.82rem;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+  .step-num::before{content:counter(step);}
+  .step-body{flex:1;}
+  .step-body strong{color:#e8f0e8;}
+
+  /* ── UI mock elements ── */
+  .ui-mock{background:#1e2e1e;border:1px solid #3a6a3a;border-radius:8px;
+    padding:14px 18px;margin:18px 0;font-size:.82rem;}
+  .ui-mock-header{background:linear-gradient(135deg,#1a5c2e,#2a7d42);
+    border-radius:6px;padding:10px 14px;margin-bottom:10px;
+    display:flex;align-items:center;gap:10px;}
+  .ui-pill{display:inline-flex;align-items:center;gap:4px;
+    padding:4px 10px;border-radius:5px;font-size:.72rem;font-weight:700;
+    margin:2px;}
+  .pill-green{background:#4aa85e;color:#fff;}
+  .pill-red{background:#9b1c1c;color:#fff;}
+  .pill-blue{background:#1a4a8a;color:#fff;}
+  .pill-orange{background:#c85c00;color:#fff;}
+  .pill-dark{background:#1e2e1e;border:1px solid #3a6a3a;color:#c8e8c8;}
+  .slot-pill{display:inline-block;padding:2px 6px;border-radius:4px;
+    font-size:.7rem;font-weight:800;color:#fff;margin:0 2px;}
+  .tab-mock{display:inline-flex;align-items:center;gap:4px;
+    background:#f5f0e4;color:#2a5a2a;padding:4px 10px;border-radius:5px 5px 0 0;
+    font-size:.72rem;font-weight:600;margin:2px 2px 0;}
+  .badge{display:inline-block;padding:1px 5px;border-radius:3px;
+    font-size:.62rem;font-weight:800;margin:0 2px;}
+  .badge-blk{background:#3a6a3a;color:#c0e0c0;}
+  .badge-py{background:#3a5a9a;color:#c0d0ff;}
+  .badge-addon{background:#b8660b;color:#ffe0b0;}
+
+  /* ── Code snippets ── */
+  code{background:#0d2a1a;color:#88ffcc;padding:2px 6px;border-radius:4px;
+    font-family:'Courier New',monospace;font-size:.82em;}
+  pre{background:#0d2a1a;color:#c8f0c8;padding:16px;border-radius:8px;
+    font-family:'Courier New',monospace;font-size:.82rem;line-height:1.7;
+    overflow-x:auto;margin:18px 0;border:1px solid #1a4a2a;}
+  pre .cm{color:#5a9a5a;}
+  pre .kw{color:#88aaff;}
+  pre .fn{color:#88ffcc;}
+  pre .num{color:#ffcc88;}
+  pre .str{color:#ffaa88;}
+
+  /* ── Tables ── */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.82rem;}
+  th{background:#1e3a1e;color:#4aa85e;text-align:left;padding:8px 12px;
+    font-weight:700;border-bottom:1px solid #2a5a2a;}
+  td{padding:7px 12px;border-bottom:1px solid #1e3a1e;color:rgba(255,255,255,.8);}
+  tr:hover td{background:rgba(74,168,94,.05);}
+
+  /* ── Block colors ── */
+  .blk{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;
+    border-radius:4px;font-size:.75rem;font-weight:700;color:#fff;margin:1px;}
+  .blk-control{background:#2a7d42;}
+  .blk-move{background:#0d7377;}
+  .blk-motor{background:#8B4513;}
+  .blk-sensor{background:#1565a8;}
+  .blk-pixel{background:#b8860b;}
+  .blk-sound{background:#7b3f8c;}
+  .blk-logic{background:#5b73a5;}
+  .blk-loop{background:#5ba55b;}
+  .blk-op{background:#5b5ba5;}
+  .blk-gyro{background:#b8660b;}
+
+  /* ── Pixel dots for launcher diagram ── */
+  .pixel-row{display:flex;gap:8px;margin:12px 0;}
+  .pixel{width:36px;height:36px;border-radius:50%;display:flex;
+    align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:#fff;}
+  .px-red{background:#cc2200;}
+  .px-green{background:#00aa00;}
+  .px-blue{background:#0033cc;}
+  .px-yellow{background:#aa8800;color:#fff;}
+  .px-off{background:#1a2a1a;border:1px solid #2a4a2a;color:#3a5a3a;}
+
+  /* ── Responsive ── */
+  @media(max-width:700px){
+    #sidebar{display:none;}
+    #content{margin-left:0;padding:24px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-title">AgRobotics<br>Programming App</div>
+    <div class="sidebar-logo-sub">User Guide</div>
+  </div>
+  <div class="nav-section">Getting Started</div>
+  <a class="nav-link" href="#intro">What Is This App?</a>
+  <a class="nav-link" href="#what-you-need">What You Need</a>
+  <a class="nav-link" href="#opening">Opening the App</a>
+  <div class="nav-section">The Interface</div>
+  <a class="nav-link" href="#interface">Interface Overview</a>
+  <a class="nav-link" href="#toolbar">Toolbar Buttons</a>
+  <a class="nav-link" href="#menus">File & Help Menus</a>
+  <a class="nav-link" href="#workspace">The Workspace</a>
+  <a class="nav-link" href="#right-panel">Right Panel</a>
+  <div class="nav-section">Connecting</div>
+  <a class="nav-link" href="#connecting">Connecting to Your Robot</a>
+  <a class="nav-link" href="#ble-toggle">BLE Enable/Disable</a>
+  <div class="nav-section">Writing Programs</div>
+  <a class="nav-link" href="#first-blocks">First Block Program</a>
+  <a class="nav-link" href="#first-python">First Python Program</a>
+  <a class="nav-link" href="#examples">Using Examples</a>
+  <div class="nav-section">Slots & Launcher</div>
+  <a class="nav-link" href="#slots">The Slot System</a>
+  <a class="nav-link" href="#uploading">Uploading a Program</a>
+  <a class="nav-link" href="#launcher">Running Without a Computer</a>
+  <div class="nav-section">Sensors & Movement</div>
+  <a class="nav-link" href="#movement">Movement Blocks</a>
+  <a class="nav-link" href="#sensors">Using Sensors</a>
+  <div class="nav-section">Files & Saving</div>
+  <a class="nav-link" href="#saving">Saving Your Work</a>
+  <a class="nav-link" href="#loading">Loading Programs</a>
+  <div class="nav-section">Help</div>
+  <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+  <a class="nav-link" href="#tips">Quick Tips</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="content">
+
+  <h1>AgRobotics Programming App</h1>
+  <div class="guide-intro">
+    Welcome to the AgRobotics Programming App — a tool for programming your AgRobotics robot
+    right in your browser. No installation required. This guide walks you through everything
+    you need to get started, write your first program, and confidently use the app on
+    competition day.
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="intro">What Is This App?</h2>
+
+  <p>The AgRobotics Programming App lets you write programs for your robot using two methods:</p>
+  <ul style="margin:0 0 14px 20px;color:rgba(255,255,255,.85);">
+    <li style="margin-bottom:6px;"><strong>Block Coding</strong> — drag and drop colorful puzzle pieces to build programs visually. Great for beginners.</li>
+    <li style="margin-bottom:6px;"><strong>Python Coding</strong> — write MicroPython code directly in a full editor with syntax highlighting.</li>
+  </ul>
+  <p>Both methods send the same type of program to your robot — an <code>ag.*</code> MicroPython program that controls motors, reads sensors, plays sounds, and lights up pixels.</p>
+
+  <div class="tip"><strong>Tip:</strong> You can switch between Block and Python tabs at any time. The block editor even shows you the Python code it generates in the MicroPython panel — a great way to start learning Python!</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="what-you-need">What You Need</h2>
+
+  <table>
+    <tr><th>Item</th><th>Details</th></tr>
+    <tr><td><strong>Browser</strong></td><td>Google Chrome or Microsoft Edge (required for Bluetooth and USB). Firefox and Safari do not support Web Bluetooth.</td></tr>
+    <tr><td><strong>AgRobotics Robot</strong></td><td>Built and ready to go. Left motor in channel 1, right motor in channel 2.</td></tr>
+    <tr><td><strong>Connection</strong></td><td>Bluetooth (BLE) for wireless, or a USB data cable for wired. Not all USB cables support data — if connection fails, try a different cable.</td></tr>
+    <tr><td><strong>The App</strong></td><td>Either open <code>index.html</code> from the downloaded zip, or visit the online version your teacher provides.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="opening">Opening the App</h2>
+
+  <p>If you downloaded the app as a zip file:</p>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">Unzip the <code>agrobotics-ide.zip</code> file into a folder on your computer.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Open the <code>agrobotics-ide</code> folder and double-click <strong>index.html</strong>.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Chrome or Edge will open the app. You may see a browser message about local files — this is normal. Click through to continue.</div></div>
+  </div>
+
+  <div class="note"><strong>Note:</strong> Always open the app in Chrome or Edge. The Bluetooth and USB connection features are not supported in other browsers.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="interface">Interface Overview</h2>
+
+  <p>The app is divided into four main areas:</p>
+
+  <div class="ui-mock">
+    <div class="ui-mock-header">
+      <span style="color:#f5f0e8;font-weight:700;font-family:Georgia,serif;">AgRobotics Programming App</span>
+      <span style="color:rgba(255,255,255,.5);font-size:.7rem;">Powered by PITSCO Education</span>
+      <span style="margin-left:auto;display:flex;gap:6px;">
+        <span class="ui-pill pill-green">📁 File</span>
+        <span class="ui-pill pill-green">❓ Help</span>
+        <span class="ui-pill pill-green">▶ Run</span>
+        <span class="ui-pill pill-red">■ Stop</span>
+        <span class="ui-pill pill-orange">⬆ Upload</span>
+        <span class="ui-pill pill-blue">🔗 Connect</span>
+      </span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:flex-start;font-size:.72rem;">
+      <div style="flex:1;background:#1a2a1a;border:1px solid #2a4a2a;border-radius:6px;padding:8px;">
+        <div style="display:flex;gap:4px;margin-bottom:8px;">
+          <span class="tab-mock"><span class="badge badge-blk">BLK</span> My Program <span class="slot-pill" style="background:#ff4444;">A-A</span> ×</span>
+          <span class="tab-mock"><span class="badge badge-py">PY</span> sensor test ×</span>
+          <span style="padding:4px 8px;font-size:.72rem;color:#4aa85e;cursor:pointer;">+ New Tab</span>
+        </div>
+        <div style="background:#1e3a1e;border-radius:4px;padding:16px;min-height:80px;color:#3a6a3a;font-size:.7rem;text-align:center;padding-top:30px;">
+          Blockly Workspace / Python Editor
+        </div>
+      </div>
+      <div style="width:140px;background:#1a2a1a;border:1px solid #2a4a2a;border-radius:6px;padding:8px;">
+        <div style="display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap;">
+          <span style="font-size:.65rem;padding:3px 6px;background:#1e2e1e;border:1px solid #3a6a3a;border-radius:3px;color:#7dbf7d;">⚙ MicroPython</span>
+          <span style="font-size:.65rem;padding:3px 6px;background:#1e2e1e;border:1px solid #3a6a3a;border-radius:3px;color:#7dbf7d;">▶ Console</span>
+          <span style="font-size:.65rem;padding:3px 6px;background:#1e2e1e;border:1px solid #3a6a3a;border-radius:3px;color:#7dbf7d;">📖 Reference</span>
+        </div>
+        <div style="background:#0e1e0e;border-radius:4px;padding:8px;font-size:.65rem;color:#3a6a3a;">Right Panel</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Area</th><th>What It Does</th></tr>
+    <tr><td><strong>Header</strong></td><td>Contains the app title, File and Help menus, and all the action buttons (Run, Stop, Upload, Connect).</td></tr>
+    <tr><td><strong>Tab Bar</strong></td><td>Shows your open programs. Each tab is a separate program. Click to switch between them.</td></tr>
+    <tr><td><strong>Workspace</strong></td><td>The main area where you build your program — either the Blockly block editor or the Python code editor.</td></tr>
+    <tr><td><strong>Right Panel</strong></td><td>Shows the generated MicroPython code, the Console output, and the Block Reference.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="toolbar">Toolbar Buttons</h2>
+
+  <table>
+    <tr><th>Button</th><th>What It Does</th></tr>
+    <tr><td><span class="ui-pill pill-green" style="font-size:.72rem;">▶ Run</span></td><td>Sends your program to the robot and runs it immediately — great for quick testing. Does not use a slot.</td></tr>
+    <tr><td><span class="ui-pill pill-red" style="font-size:.72rem;">■ Stop / Reset</span></td><td>Stops any running program instantly, turns off all motors and lights, and returns to the launcher.</td></tr>
+    <tr><td><span style="background:#1e3a1e;border:1px solid #3a6a3a;color:#c8e8c8;padding:4px 10px;border-radius:5px;font-size:.72rem;font-weight:700;">SLOT A-A ▼</span></td><td>Click to open the slot picker. Choose which slot to upload your program to.</td></tr>
+    <tr><td><span class="ui-pill pill-orange" style="font-size:.72rem;">⬆ Upload to Slot</span></td><td>Uploads your program to the selected slot on the controller. The robot stores it so you can run it without a computer.</td></tr>
+    <tr><td><span class="ui-pill pill-blue" style="font-size:.72rem;">🔗 Connect</span></td><td>Opens the connection dialog to connect via Bluetooth or USB.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="menus">File & Help Menus</h2>
+
+  <h3>File Menu</h3>
+  <table>
+    <tr><th>Item</th><th>What It Does</th></tr>
+    <tr><td>New</td><td>Clears the current tab to a blank program.</td></tr>
+    <tr><td>Load Code</td><td>Opens a .xml (blocks) or .py (Python) file from your computer into a new tab.</td></tr>
+    <tr><td>Save Program</td><td>Saves the current tab — .xml for block tabs, .py for Python tabs.</td></tr>
+    <tr><td>Save Python</td><td>Saves the generated MicroPython code from a blocks tab as a .py file.</td></tr>
+    <tr><td>Examples</td><td>Opens the Examples Browser — 38 ready-to-use example programs.</td></tr>
+    <tr><td>Rename Bluetooth Device</td><td>Changes the robot's Bluetooth name (requires USB connection).</td></tr>
+    <tr><td>Firmware Update</td><td>Flashes new firmware to the controller (requires USB connection).</td></tr>
+  </table>
+
+  <h3>Help Menu</h3>
+  <table>
+    <tr><th>Item</th><th>What It Does</th></tr>
+    <tr><td>Block Reference</td><td>Opens a detailed reference for every block in a new browser tab.</td></tr>
+    <tr><td>Building Tips</td><td>Opens the robot building tips page in a new tab.</td></tr>
+    <tr><td>User Guide</td><td>Opens this guide.</td></tr>
+    <tr><td>About</td><td>Shows version information.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="workspace">The Workspace</h2>
+
+  <p>The workspace is where you build your program. It changes depending on which type of tab you have open.</p>
+
+  <h3>Block Coding Workspace <span class="badge badge-blk">BLK</span></h3>
+  <p>The block workspace has two parts:</p>
+  <ul style="margin:0 0 14px 20px;color:rgba(255,255,255,.85);">
+    <li style="margin-bottom:6px;"><strong>Toolbox</strong> — the panel on the left with all the block categories (Control, Movement, Sensors, etc.). Click a category to expand it, then drag a block into the workspace.</li>
+    <li style="margin-bottom:6px;"><strong>Canvas</strong> — the large area where you arrange and connect blocks. Scroll to zoom in/out. Click and drag the background to pan around.</li>
+  </ul>
+  <div class="tip"><strong>Tip:</strong> Blocks snap together like puzzle pieces. A block will only connect where it fits — the shape tells you what kind of value it accepts.</div>
+
+  <h3>Python Coding Workspace <span class="badge badge-py">PY</span></h3>
+  <p>The Python workspace is a full code editor with syntax highlighting, line numbers, and auto-indent. You write MicroPython code directly using <code>ag.*</code> functions — the same functions that the block editor generates. The toolbox is hidden in Python mode since you type your code instead.</p>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="right-panel">The Right Panel</h2>
+
+  <p>The right panel has three tabs:</p>
+  <table>
+    <tr><th>Tab</th><th>What It Shows</th></tr>
+    <tr><td>⚙ MicroPython</td><td>The Python code that your blocks generate, updated live as you work. Great for seeing how blocks translate to real code. Hidden when a Python tab is active.</td></tr>
+    <tr><td>▶ Console</td><td>Shows everything printed by the robot — sensor readings, status messages, errors, and any Print blocks in your program. Type commands directly in the input bar to send them to the robot.</td></tr>
+    <tr><td>📖 Reference</td><td>A quick block reference you can browse without leaving the app. For the full reference, use Help → Block Reference.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="connecting">Connecting to Your Robot</h2>
+
+  <h3>Connecting via Bluetooth (BLE)</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Power on your robot.</strong> Wait for the startup beep and the LED to turn on.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Click Connect</strong> in the toolbar. The connection dialog opens.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Choose Bluetooth (BLE).</strong> Your browser will show a list of nearby Bluetooth devices.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Select your robot</strong> from the list — it will appear as something like <code>AgRobot-xxxx</code>.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Click Pair.</strong> The Connect button turns green and the status shows <em>Connected</em>.</div></div>
+  </div>
+
+  <div class="warn"><strong>Important:</strong> Bluetooth only works in Chrome or Edge. If you don't see your robot in the list, make sure it is powered on and within range. Try moving closer.</div>
+
+  <h3>Connecting via USB</h3>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Connect a USB data cable</strong> from your robot to your computer. Make sure it is a data cable, not just a charging cable.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Power on your robot.</strong></div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Click Connect</strong> and choose <strong>USB / Serial.</strong> Select the correct COM port from the list.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">The Connect button turns green when connected.</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="ble-toggle">Enabling and Disabling Bluetooth</h2>
+
+  <p>Your robot has a built-in Bluetooth on/off toggle — useful for competition days when you want to prevent accidental connections from other devices.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body"><strong>Hold Button B</strong> while powering on the robot to toggle Bluetooth on or off.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">All four pixels flash to confirm the new setting:
+      <div class="pixel-row" style="margin-top:10px;">
+        <div style="text-align:center"><div class="pixel px-blue">●</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Blue flash</div></div>
+        <div style="display:flex;align-items:center;padding:0 12px;color:rgba(255,255,255,.5);font-size:.8rem;">= Bluetooth <strong style="color:#7ab0e8;">Enabled</strong></div>
+      </div>
+      <div class="pixel-row" style="margin-top:6px;">
+        <div style="text-align:center"><div class="pixel px-red">●</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Red flash</div></div>
+        <div style="display:flex;align-items:center;padding:0 12px;color:rgba(255,255,255,.5);font-size:.8rem;">= Bluetooth <strong style="color:#ff6666;">Disabled</strong></div>
+      </div>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">The setting is saved. Every time the controller powers on or resets, the pixels briefly flash <strong>blue</strong> (enabled) or <strong>red</strong> (disabled) as a reminder of the current state.</div></div>
+  </div>
+
+  <div class="note"><strong>Note:</strong> Even with Bluetooth disabled, you can still connect and upload programs via USB.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="first-blocks">Your First Block Program</h2>
+
+  <p>Let's write a simple program that drives the robot forward for 30 cm and stops. Follow these steps:</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Create a new tab.</strong> Click <strong>+ New Tab</strong> in the tab bar. When the dialog appears, choose <strong>Block Coding</strong> and click Create Tab.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add a Robot Config block.</strong> In the toolbox, click <strong>🤖 Movement</strong>. Drag the <span class="blk blk-move">🤖 Robot Config</span> block onto the workspace. This sets up your motors and wheel size. Leave the defaults: Left=1, Right=2, Diameter=80, Wheelbase=185.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add Begin and End.</strong> Click <strong>🌾 Control</strong> in the toolbox. Drag <span class="blk blk-control">🌾 Ag Begin</span> to the top of your program and <span class="blk blk-control">🌾 Ag End</span> to the bottom. Every program needs these — Begin waits for you to press Select before starting, and End stops everything cleanly.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add a Set Speed block.</strong> From Movement, add <span class="blk blk-move">🤖 Set Speed 50%</span> after the Config block. This sets how fast the robot moves.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add a Move block.</strong> From Movement, drag <span class="blk blk-move">🤖 Move Forward 30 cm Wait Yes</span> into the program. Connect it after the Set Speed block.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add a Stop block.</strong> Add <span class="blk blk-move">🤖 Stop Moving</span> after the Move block.
+    </div></div>
+  </div>
+
+  <p>Your program should look like this from top to bottom:</p>
+  <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+    <span class="blk blk-control">🌾 Ag Begin</span>
+    <span class="blk blk-move">🤖 Robot Config Left:1 Right:2 Diam:80 WB:185</span>
+    <span class="blk blk-move">🤖 Set Speed 50%</span>
+    <span class="blk blk-move">🤖 Move Forward 30 cm Wait:Yes</span>
+    <span class="blk blk-move">🤖 Stop Moving</span>
+    <span class="blk blk-control">🌾 Ag End</span>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Connect your robot</strong> (see Connecting section above).
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Click Run</strong> in the toolbar. Your program is sent to the robot. Place it on a flat surface and press the <strong>Select button</strong> on the controller when prompted. The robot should drive forward 30 cm and stop!
+    </div></div>
+  </div>
+
+  <div class="tip"><strong>Tip:</strong> Check the MicroPython panel on the right while you build — you can see exactly what code your blocks are generating. It updates live as you add blocks.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="first-python">Your First Python Program</h2>
+
+  <p>Python mode lets you write MicroPython code directly. Here's the same program as above — written in Python:</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Create a Python tab.</strong> Click <strong>+ New Tab</strong> and choose <strong>Python Coding</strong>. The editor opens with a starter template already filled in.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>The editor already has:</strong>
+      <pre><span class="kw">import</span> ag
+<span class="kw">import</span> time
+
+ag.<span class="fn">Begin</span>()
+<span class="cm"># Write your MicroPython program here</span>
+<span class="cm"># Use ag.* functions to control the robot</span>
+ag.<span class="fn">End</span>()</pre>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Add your code</strong> between Begin and End:
+      <pre><span class="kw">import</span> ag
+<span class="kw">import</span> time
+
+ag.<span class="fn">Begin</span>()
+
+ag.<span class="fn">setMovementMotors</span>(<span class="num">1</span>, <span class="num">2</span>)
+ag.<span class="fn">setMovementWheelDiameter</span>(<span class="num">80</span>)
+ag.<span class="fn">setMovementWheelbase</span>(<span class="num">185</span>)
+ag.<span class="fn">setMovementSpeed</span>(<span class="num">50</span>)
+ag.<span class="fn">moveForward</span>(<span class="num">30</span>, <span class="str">'cm'</span>, <span class="kw">True</span>)
+ag.<span class="fn">stopMoving</span>()
+
+ag.<span class="fn">End</span>()</pre>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Click Run</strong> to send it to your robot. Press Select on the controller to start.
+    </div></div>
+  </div>
+
+  <div class="tip"><strong>Tip:</strong> Use <code>Ctrl+/</code> (or <code>Cmd+/</code> on Mac) to comment or uncomment lines in the Python editor. Tab indents, Shift+Tab un-indents.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="examples">Using the Examples Browser</h2>
+
+  <p>The app comes with 38 ready-to-use example programs covering every category of blocks. They're a great way to learn by seeing working code.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">Click <strong>File → Examples</strong> in the toolbar.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Browse examples by category — Movement, Sensors, Motors & Servos, Buttons/Pixels/Sound, Diagnostics, and more.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Each example has two load buttons: <strong>🧩 Blocks</strong> loads a block version, <strong>⌨ Python</strong> loads the Python version. Click whichever you prefer.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">The example opens in a new tab. You can run it as-is or modify it to experiment.</div></div>
+  </div>
+
+  <div class="tip"><strong>Tip:</strong> Start with <em>Example 01 — First Move</em> if you haven't run a program yet. Then try the sensor examples with a sensor plugged into port 1.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="slots">The Slot System</h2>
+
+  <p>Your robot can store up to <strong>16 programs</strong> in its memory — organized into 4 groups of 4 slots each. Programs stored in slots run without a computer, using just the buttons on the robot.</p>
+
+  <p>Groups are identified by both a letter and a color:</p>
+  <table>
+    <tr><th>Group</th><th>Color</th><th>Slots</th><th>Program Numbers</th></tr>
+    <tr><td><strong>A</strong></td><td><span style="color:#ff4444;">■</span> Red</td><td>A-A, A-B, A-C, A-D</td><td>1, 2, 3, 4</td></tr>
+    <tr><td><strong>B</strong></td><td><span style="color:#00cc00;">■</span> Green</td><td>B-A, B-B, B-C, B-D</td><td>5, 6, 7, 8</td></tr>
+    <tr><td><strong>C</strong></td><td><span style="color:#4444ff;">■</span> Blue</td><td>C-A, C-B, C-C, C-D</td><td>9, 10, 11, 12</td></tr>
+    <tr><td><strong>D</strong></td><td><span style="color:#ccaa00;">■</span> Yellow</td><td>D-A, D-B, D-C, D-D</td><td>13, 14, 15, 16</td></tr>
+  </table>
+
+  <div class="note"><strong>Color-blind friendly:</strong> Each group has both a letter (A/B/C/D) and a color. You can always use the letter instead of the color — they mean the same thing.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="uploading">Uploading a Program to a Slot</h2>
+
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Connect your robot</strong> via Bluetooth or USB.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Choose a slot.</strong> Click the <strong>SLOT</strong> button in the toolbar to open the slot picker. Occupied slots show a colored dot. Click the slot you want (e.g. A-A for Group A, first slot).
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      <strong>Click Upload to Slot.</strong> The program uploads to the controller. The launcher restarts automatically.
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">
+      A colored pill appears on the tab showing which slot it's in — for example <span class="slot-pill" style="background:#ff4444;">A-A</span> means Group A (Red), Slot A.
+    </div></div>
+  </div>
+
+  <div class="warn"><strong>Warning:</strong> Uploading to an occupied slot will overwrite whatever is already there. The app warns you before this happens. If you need to keep a program, save it to your computer first using File → Save Program.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="launcher">Running Programs Without a Computer</h2>
+
+  <p>Once programs are uploaded, you can run them using only the controller buttons — no computer or app needed. This is how programs run during competition.</p>
+
+  <h3>Phase 1 — Group Picker</h3>
+  <p>When the controller powers on, all four pixels light up in their group colors:</p>
+  <div class="pixel-row">
+    <div style="text-align:center"><div class="pixel px-red">A</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Red</div></div>
+    <div style="text-align:center"><div class="pixel px-green">B</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Green</div></div>
+    <div style="text-align:center"><div class="pixel px-blue">C</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Blue</div></div>
+    <div style="text-align:center"><div class="pixel px-yellow">D</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">Yellow</div></div>
+  </div>
+  <p>Press <strong>A, B, C, or D</strong> to enter that group. If a group has no programs, you'll hear an error buzz.</p>
+
+  <h3>Phase 2 — Slot Selection</h3>
+  <p>After entering a group, pixels for occupied slots light solid in the group color. Empty slots are off.</p>
+  <div class="pixel-row">
+    <div style="text-align:center"><div class="pixel px-red">A</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">has program</div></div>
+    <div style="text-align:center"><div class="pixel px-off">B</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">empty</div></div>
+    <div style="text-align:center"><div class="pixel px-red">C</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">has program</div></div>
+    <div style="text-align:center"><div class="pixel px-off">D</div><div style="font-size:.65rem;margin-top:4px;color:rgba(255,255,255,.6);">empty</div></div>
+  </div>
+  <p>Press <strong>A, B, C, or D</strong> to select a slot — it blinks rapidly to confirm. Then press <strong>Select</strong> to run it. Press <strong>Select</strong> without choosing a slot to go back to the Group Picker.</p>
+
+  <div class="tip"><strong>Tip:</strong> A full slot map is printed to the Console every time the controller boots — connect to the app and check the Console tab to see which slots are occupied.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="movement">Movement Blocks</h2>
+
+  <p>All movement blocks require a <span class="blk blk-move">🤖 Robot Config</span> block at the start of your program. This tells the app which motors are left and right, and how big your wheels are.</p>
+
+  <table>
+    <tr><th>Block</th><th>What It Does</th></tr>
+    <tr><td><span class="blk blk-move">🤖 Robot Config (2WD)</span></td><td>Sets left motor, right motor, wheel diameter, and wheelbase. Use once at program start. Default: Left=1, Right=2.</td></tr>
+    <tr><td><span class="blk blk-move">🤖 Robot Config (4WD)</span></td><td>Same as 2WD but assigns two motors per side. Default: Left1=1, Left2=2, Right1=3, Right2=4.</td></tr>
+    <tr><td><span class="blk blk-move">🤖 Set Speed %</span></td><td>Sets speed for all movement blocks. Range 0–100%. Set this before your first movement block.</td></tr>
+    <tr><td><span class="blk blk-move">🤖 Move Forward/Backward</span></td><td>Moves a set distance in cm or wheel rotations. Wait=Yes holds until complete.</td></tr>
+    <tr><td><span class="blk blk-move">🤖 Start Moving</span></td><td>Starts moving continuously. Robot keeps going until Stop Moving runs.</td></tr>
+    <tr><td><span class="blk blk-move">🤖 Turn Degrees</span></td><td>Pivots the robot in place by the given number of degrees using wheel encoders.</td></tr>
+    <tr><td><span class="blk blk-gyro">🧭 Gyro Turn</span></td><td>Turns a precise number of degrees using the gyro sensor. More accurate than encoder turns on slippery surfaces. <span class="badge badge-addon">Add-on required</span></td></tr>
+    <tr><td><span class="blk blk-move">🤖 Stop Moving</span></td><td>Stops both drive motors immediately.</td></tr>
+  </table>
+
+  <div class="note"><strong>Gyro Turn</strong> requires the optional Grove 6-Axis IMU Sensor (SKU 105020012) plugged into a sensor port. It's not included in the standard AgRobotics kit.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="sensors">Using Sensors</h2>
+
+  <p>Sensors plug into sensor ports 1–5 on the controller. Always specify which port number matches where your sensor is plugged in.</p>
+
+  <table>
+    <tr><th>Sensor</th><th>Block</th><th>Returns</th></tr>
+    <tr><td>TOF Distance</td><td><span class="blk blk-sensor">📡 TOF Distance</span></td><td>Distance in mm (30–1000)</td></tr>
+    <tr><td>Ultrasonic</td><td><span class="blk blk-sensor">📡 Ultrasonic Distance</span></td><td>Distance in cm (2–350)</td></tr>
+    <tr><td>Line Sensor</td><td><span class="blk blk-sensor">📡 Line Sensor</span></td><td>True = dark line detected</td></tr>
+    <tr><td>Color Sensor</td><td><span class="blk blk-sensor">📡 Color Name</span></td><td>red, green, blue, white, black</td></tr>
+    <tr><td>Temperature</td><td><span class="blk blk-sensor">📡 Temperature</span></td><td>°C or °F (DHT11)</td></tr>
+    <tr><td>Humidity</td><td><span class="blk blk-sensor">📡 Humidity</span></td><td>% (DHT11)</td></tr>
+    <tr><td>Gyro Angle</td><td><span class="blk blk-gyro">🧭 Gyro Angle</span></td><td>Degrees since last reset</td></tr>
+  </table>
+
+  <p>Sensor blocks are <strong>reporter blocks</strong> — oval shaped. They plug into the value slot of other blocks, like a Print block or an If condition.</p>
+
+  <p>A simple example — print TOF sensor readings in a loop:</p>
+  <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+    <span class="blk blk-control">🌾 Ag Begin</span>
+    <span class="blk blk-loop" style="padding-left:12px;">🔁 Repeat While True</span>
+    <span class="blk blk-control" style="margin-left:24px;">🖨 Print: <span class="blk blk-sensor" style="font-size:.68rem;">📡 TOF Distance port 1</span></span>
+    <span class="blk blk-control" style="margin-left:24px;">⏱ Wait 0.2 sec</span>
+    <span class="blk blk-control">🌾 Ag End</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="saving">Saving Your Work</h2>
+
+  <p>Always save your programs to your computer so you don't lose them. Use <strong>File → Save Program</strong>.</p>
+
+  <table>
+    <tr><th>Tab Type</th><th>File Saved</th><th>What It Contains</th></tr>
+    <tr><td><span class="badge badge-blk">BLK</span> Blocks tab</td><td><code>.xml</code></td><td>Your block layout — reloads exactly as you left it.</td></tr>
+    <tr><td><span class="badge badge-py">PY</span> Python tab</td><td><code>.py</code></td><td>Your Python code — opens directly in the Python editor.</td></tr>
+  </table>
+
+  <p>The slot information is embedded in the saved file — when you reload it, the slot pill reappears on the tab automatically.</p>
+
+  <div class="tip"><strong>Tip:</strong> Name your files clearly — something like <code>square-pattern-v2.xml</code> is much easier to find later than <code>untitled.xml</code>. Double-click a tab name to rename it before saving.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="loading">Loading Programs</h2>
+
+  <p>To reload a saved program, use <strong>File → Load Code</strong>. The file picker will open — find your saved <code>.xml</code> or <code>.py</code> file and select it. It opens in a new tab with the correct mode automatically (Blocks for .xml, Python for .py).</p>
+
+  <div class="note"><strong>Note:</strong> When running the app locally from a zip file, the Examples browser loads from content built into the app itself — not from files on your computer. Your own saved files are always loaded using the file picker.</div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="troubleshooting">Troubleshooting</h2>
+
+  <table>
+    <tr><th>Problem</th><th>What to Try</th></tr>
+    <tr><td>Robot doesn't appear in the Bluetooth list</td><td>Make sure the robot is powered on. Move closer. Check that Bluetooth isn't disabled (hold Button B at power-on to toggle). Refresh the browser and try again.</td></tr>
+    <tr><td>Bluetooth connected but nothing happens when I click Run</td><td>Check the Console tab for error messages. Make sure your program has an Ag Begin and Ag End block.</td></tr>
+    <tr><td>Robot moves but in the wrong direction</td><td>Your left and right motor assignments may be swapped. In the Robot Config block, try switching the Left and Right motor numbers.</td></tr>
+    <tr><td>Distance moves are inaccurate</td><td>Check that your Wheel Diameter and Wheelbase values in the Robot Config block match your actual robot measurements in mm.</td></tr>
+    <tr><td>Gyro turns are stopping short or overshooting</td><td>The gyro coast margin is tuned for 50% speed. If you changed speed, some variation is expected.</td></tr>
+    <tr><td>Sensor always reads 0 or gives errors</td><td>Make sure the sensor is plugged into the correct port and the port number in the block matches. Check the Console for error messages.</td></tr>
+    <tr><td>USB connection not working</td><td>Try a different USB cable — many cables only charge and don't carry data. Try a different USB port on your computer.</td></tr>
+    <tr><td>Program runs from Run but not from the launcher</td><td>Make sure you clicked Upload to Slot — Run sends the program directly but doesn't save it. The launcher only runs programs saved to slots.</td></tr>
+    <tr><td>Robot won't stop</td><td>Press the <span class="ui-pill pill-red" style="font-size:.72rem;">■ Stop / Reset</span> button in the toolbar. This immediately halts the program and returns to the launcher.</td></tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <h2 class="section" id="tips">Quick Tips</h2>
+
+  <ul style="color:rgba(255,255,255,.85);margin:0 0 14px 20px;">
+    <li style="margin-bottom:10px;">Always start every program with <span class="blk blk-control">🌾 Ag Begin</span> and end with <span class="blk blk-control">🌾 Ag End</span>.</li>
+    <li style="margin-bottom:10px;">Always put the <span class="blk blk-move">🤖 Robot Config</span> block before any movement blocks.</li>
+    <li style="margin-bottom:10px;">Use <strong>Print blocks</strong> to print sensor values to the Console while your program runs — this is the best way to debug.</li>
+    <li style="margin-bottom:10px;">Use <strong>Run</strong> for quick testing. Use <strong>Upload to Slot</strong> when your program is ready for competition.</li>
+    <li style="margin-bottom:10px;">Save your programs to your computer regularly — the app doesn't store them between sessions.</li>
+    <li style="margin-bottom:10px;">The <strong>Stop / Reset</strong> button always works — use it any time the robot behaves unexpectedly.</li>
+    <li style="margin-bottom:10px;">On competition day, disable Bluetooth by holding Button B at power-on (you'll hear a low tone). This prevents accidental connections from other devices.</li>
+    <li style="margin-bottom:10px;">The Block Reference (Help → Block Reference) has details on every single block — keep it open in another tab while you work.</li>
+    <li style="margin-bottom:10px;">Load one of the 38 example programs to see how blocks connect together. Modify the example to learn how each part works.</li>
+  </ul>
+
+  <div style="margin-top:48px;padding-top:24px;border-top:1px solid #2a4a2a;
+    font-size:.75rem;color:rgba(255,255,255,.35);text-align:center;">
+    AgRobotics Programming App — Powered by PITSCO Education
+  </div>
+
+</main>
+
+<script>
+// Active nav link highlighting on scroll
+const sections = document.querySelectorAll('.section, h2[id], h3[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const allHeadings = document.querySelectorAll('h2[id]');
+
+function updateNav() {
+  let current = '';
+  allHeadings.forEach(h => {
+    if (window.scrollY >= h.offsetTop - 60) current = h.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active',
+      link.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateNav);
+updateNav();
+</script>
+</body>
+</html>
