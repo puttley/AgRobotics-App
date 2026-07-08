@@ -6,17 +6,17 @@
 #  Reads the ultrasonic sensor and prints distance to the console.
 #  Plug the sensor into sensor port 1.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Ultrasonic Sensor — distance in cm')
 print('')
 
 while True:
-    distance = ag.getSonicSensor(1)
+    distance = titan.getSonicSensor(1)
     print('Distance:', distance, 'cm')
     time.sleep(0.2)
 
-ag.End()
+titan.End()

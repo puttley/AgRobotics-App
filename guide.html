@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AgRobotics Programming App — User Guide</title>
+<title>TITAN for AgRobotics App — User Guide</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Segoe UI',Arial,sans-serif;background:#1a2a1a;color:#e8f0e8;
@@ -144,7 +144,7 @@
 <!-- SIDEBAR NAV -->
 <nav id="sidebar">
   <div class="sidebar-logo">
-    <div class="sidebar-logo-title">AgRobotics<br>Programming App</div>
+    <div class="sidebar-logo-title">TITAN for<br>AgRobotics App</div>
     <div class="sidebar-logo-sub">User Guide</div>
   </div>
   <div class="nav-section">Getting Started</div>
@@ -182,9 +182,9 @@
 <!-- MAIN CONTENT -->
 <main id="content">
 
-  <h1>AgRobotics Programming App</h1>
+  <h1>TITAN for AgRobotics App</h1>
   <div class="guide-intro">
-    Welcome to the AgRobotics Programming App — a tool for programming your AgRobotics robot
+    Welcome to the TITAN for AgRobotics App — a tool for programming your AgRobotics robot
     right in your browser. No installation required. This guide walks you through everything
     you need to get started, write your first program, and confidently use the app on
     competition day.
@@ -193,12 +193,12 @@
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <h2 class="section" id="intro">What Is This App?</h2>
 
-  <p>The AgRobotics Programming App lets you write programs for your robot using two methods:</p>
+  <p>The TITAN for AgRobotics App lets you write programs for your robot using two methods:</p>
   <ul style="margin:0 0 14px 20px;color:rgba(255,255,255,.85);">
     <li style="margin-bottom:6px;"><strong>Block Coding</strong> — drag and drop colorful puzzle pieces to build programs visually. Great for beginners.</li>
     <li style="margin-bottom:6px;"><strong>Python Coding</strong> — write MicroPython code directly in a full editor with syntax highlighting.</li>
   </ul>
-  <p>Both methods send the same type of program to your robot — an <code>ag.*</code> MicroPython program that controls motors, reads sensors, plays sounds, and lights up pixels.</p>
+  <p>Both methods send the same type of program to your robot — an <code>titan.*</code> MicroPython program that controls motors, reads sensors, plays sounds, and lights up pixels.</p>
 
   <div class="tip"><strong>Tip:</strong> You can switch between Block and Python tabs at any time. The block editor even shows you the Python code it generates in the MicroPython panel — a great way to start learning Python!</div>
 
@@ -207,10 +207,10 @@
 
   <table>
     <tr><th>Item</th><th>Details</th></tr>
-    <tr><td><strong>Browser</strong></td><td>Google Chrome or Microsoft Edge (required for Bluetooth and USB). Firefox and Safari do not support Web Bluetooth.</td></tr>
+    <tr><td><strong>Browser</strong></td><td>Google Chrome or Microsoft Edge on Windows/Mac/Chromebook (required for Bluetooth and USB). Firefox and Safari do not support Web Bluetooth. On <strong>iPad or iPhone</strong>, use the free <strong>Bluefy</strong> browser (available on the App Store) — it supports Web Bluetooth and works with all app features.</td></tr>
     <tr><td><strong>AgRobotics Robot</strong></td><td>Built and ready to go. Left motor in channel 1, right motor in channel 2.</td></tr>
     <tr><td><strong>Connection</strong></td><td>Bluetooth (BLE) for wireless, or a USB data cable for wired. Not all USB cables support data — if connection fails, try a different cable.</td></tr>
-    <tr><td><strong>The App</strong></td><td>Either open <code>index.html</code> from the downloaded zip, or visit the online version your teacher provides.</td></tr>
+    <tr><td><strong>The App</strong></td><td>Either open <code>agrobotics-app.html</code> from the downloaded <code>agrobotics-app</code> folder, or visit the online version your teacher provides.</td></tr>
   </table>
 
   <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -218,12 +218,12 @@
 
   <p>If you downloaded the app as a zip file:</p>
   <div class="steps">
-    <div class="step"><div class="step-num"></div><div class="step-body">Unzip the <code>agrobotics-ide.zip</code> file into a folder on your computer.</div></div>
-    <div class="step"><div class="step-num"></div><div class="step-body">Open the <code>agrobotics-ide</code> folder and double-click <strong>index.html</strong>.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Unzip the <code>agrobotics-app.zip</code> file into a folder on your computer.</div></div>
+    <div class="step"><div class="step-num"></div><div class="step-body">Open the <code>agrobotics-app</code> folder and double-click <strong>agrobotics-app.html</strong>.</div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">Chrome or Edge will open the app. You may see a browser message about local files — this is normal. Click through to continue.</div></div>
   </div>
 
-  <div class="note"><strong>Note:</strong> Always open the app in Chrome or Edge. The Bluetooth and USB connection features are not supported in other browsers.</div>
+  <div class="note"><strong>Note:</strong> Always open the app in Chrome or Edge on Windows, Mac, or Chromebook. On iPad or iPhone, use the free <strong>Bluefy</strong> browser from the App Store instead — it supports all app features including Bluetooth.</div>
 
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <h2 class="section" id="interface">Interface Overview</h2>
@@ -232,7 +232,7 @@
 
   <div class="ui-mock">
     <div class="ui-mock-header">
-      <span style="color:#f5f0e8;font-weight:700;font-family:Georgia,serif;">AgRobotics Programming App</span>
+      <span style="color:#f5f0e8;font-weight:700;font-family:Georgia,serif;">TITAN for AgRobotics App</span>
       <span style="color:rgba(255,255,255,.5);font-size:.7rem;">Powered by PITSCO Education</span>
       <span style="margin-left:auto;display:flex;gap:6px;">
         <span class="ui-pill pill-green">📁 File</span>
@@ -323,7 +323,7 @@
   <div class="tip"><strong>Tip:</strong> Blocks snap together like puzzle pieces. A block will only connect where it fits — the shape tells you what kind of value it accepts.</div>
 
   <h3>Python Coding Workspace <span class="badge badge-py">PY</span></h3>
-  <p>The Python workspace is a full code editor with syntax highlighting, line numbers, and auto-indent. You write MicroPython code directly using <code>ag.*</code> functions — the same functions that the block editor generates. The toolbox is hidden in Python mode since you type your code instead.</p>
+  <p>The Python workspace is a full code editor with syntax highlighting, line numbers, and auto-indent. You write MicroPython code directly using <code>titan.*</code> functions — the same functions that the block editor generates. The toolbox is hidden in Python mode since you type your code instead.</p>
 
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <h2 class="section" id="right-panel">The Right Panel</h2>
@@ -348,7 +348,7 @@
     <div class="step"><div class="step-num"></div><div class="step-body"><strong>Click Pair.</strong> The Connect button turns green and the status shows <em>Connected</em>.</div></div>
   </div>
 
-  <div class="warn"><strong>Important:</strong> Bluetooth only works in Chrome or Edge. If you don't see your robot in the list, make sure it is powered on and within range. Try moving closer.</div>
+  <div class="warn"><strong>Important:</strong> Bluetooth works in Chrome or Edge on Windows, Mac, and Chromebook. On <strong>iPad or iPhone</strong>, use the free <strong>Bluefy</strong> browser (App Store) — it fully supports Web Bluetooth. If you don't see your robot in the list, make sure it is powered on and within range. Try moving closer.</div>
 
   <h3>Connecting via USB</h3>
   <div class="steps">
@@ -393,7 +393,7 @@
       <strong>Add a Robot Config block.</strong> In the toolbox, click <strong>🤖 Movement</strong>. Drag the <span class="blk blk-move">🤖 Robot Config</span> block onto the workspace. This sets up your motors and wheel size. Leave the defaults: Left=1, Right=2, Diameter=80, Wheelbase=185.
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
-      <strong>Add Begin and End.</strong> Click <strong>🌾 Control</strong> in the toolbox. Drag <span class="blk blk-control">🌾 Ag Begin</span> to the top of your program and <span class="blk blk-control">🌾 Ag End</span> to the bottom. Every program needs these — Begin waits for you to press Select before starting, and End stops everything cleanly.
+      <strong>Add Begin and End.</strong> Click <strong>🌾 Control</strong> in the toolbox. Drag <span class="blk blk-control">🌾 Code Start</span> to the top of your program and <span class="blk blk-control">🌾 Code End</span> to the bottom. Every program needs these — Begin waits for you to press Select before starting, and End stops everything cleanly.
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
       <strong>Add a Set Speed block.</strong> From Movement, add <span class="blk blk-move">🤖 Set Speed 50%</span> after the Config block. This sets how fast the robot moves.
@@ -408,12 +408,12 @@
 
   <p>Your program should look like this from top to bottom:</p>
   <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-    <span class="blk blk-control">🌾 Ag Begin</span>
+    <span class="blk blk-control">🌾 Code Start</span>
     <span class="blk blk-move">🤖 Robot Config Left:1 Right:2 Diam:80 WB:185</span>
     <span class="blk blk-move">🤖 Set Speed 50%</span>
     <span class="blk blk-move">🤖 Move Forward 30 cm Wait:Yes</span>
     <span class="blk blk-move">🤖 Stop Moving</span>
-    <span class="blk blk-control">🌾 Ag End</span>
+    <span class="blk blk-control">🌾 Code End</span>
   </div>
 
   <div class="steps">
@@ -438,29 +438,29 @@
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
       <strong>The editor already has:</strong>
-      <pre><span class="kw">import</span> ag
+      <pre><span class="kw">import</span> titan
 <span class="kw">import</span> time
 
-ag.<span class="fn">Begin</span>()
+titan.<span class="fn">Begin</span>()
 <span class="cm"># Write your MicroPython program here</span>
-<span class="cm"># Use ag.* functions to control the robot</span>
-ag.<span class="fn">End</span>()</pre>
+<span class="cm"># Use titan.* functions to control the robot</span>
+titan.<span class="fn">End</span>()</pre>
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
       <strong>Add your code</strong> between Begin and End:
-      <pre><span class="kw">import</span> ag
+      <pre><span class="kw">import</span> titan
 <span class="kw">import</span> time
 
-ag.<span class="fn">Begin</span>()
+titan.<span class="fn">Begin</span>()
 
-ag.<span class="fn">setMovementMotors</span>(<span class="num">1</span>, <span class="num">2</span>)
-ag.<span class="fn">setMovementWheelDiameter</span>(<span class="num">80</span>)
-ag.<span class="fn">setMovementWheelbase</span>(<span class="num">185</span>)
-ag.<span class="fn">setMovementSpeed</span>(<span class="num">50</span>)
-ag.<span class="fn">moveForward</span>(<span class="num">30</span>, <span class="str">'cm'</span>, <span class="kw">True</span>)
-ag.<span class="fn">stopMoving</span>()
+titan.<span class="fn">setMovementMotors</span>(<span class="num">1</span>, <span class="num">2</span>)
+titan.<span class="fn">setMovementWheelDiameter</span>(<span class="num">80</span>)
+titan.<span class="fn">setMovementWheelbase</span>(<span class="num">185</span>)
+titan.<span class="fn">setMovementSpeed</span>(<span class="num">50</span>)
+titan.<span class="fn">moveForward</span>(<span class="num">30</span>, <span class="str">'cm'</span>, <span class="kw">True</span>)
+titan.<span class="fn">stopMoving</span>()
 
-ag.<span class="fn">End</span>()</pre>
+titan.<span class="fn">End</span>()</pre>
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
       <strong>Click Run</strong> to send it to your robot. Press Select on the controller to start.
@@ -585,11 +585,11 @@ ag.<span class="fn">End</span>()</pre>
 
   <p>A simple example — print TOF sensor readings in a loop:</p>
   <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-    <span class="blk blk-control">🌾 Ag Begin</span>
+    <span class="blk blk-control">🌾 Code Start</span>
     <span class="blk blk-loop" style="padding-left:12px;">🔁 Repeat While True</span>
     <span class="blk blk-control" style="margin-left:24px;">🖨 Print: <span class="blk blk-sensor" style="font-size:.68rem;">📡 TOF Distance port 1</span></span>
     <span class="blk blk-control" style="margin-left:24px;">⏱ Wait 0.2 sec</span>
-    <span class="blk blk-control">🌾 Ag End</span>
+    <span class="blk blk-control">🌾 Code End</span>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════════ -->
@@ -620,7 +620,7 @@ ag.<span class="fn">End</span>()</pre>
   <table>
     <tr><th>Problem</th><th>What to Try</th></tr>
     <tr><td>Robot doesn't appear in the Bluetooth list</td><td>Make sure the robot is powered on. Move closer. Check that Bluetooth isn't disabled (hold Button B at power-on to toggle). Refresh the browser and try again.</td></tr>
-    <tr><td>Bluetooth connected but nothing happens when I click Run</td><td>Check the Console tab for error messages. Make sure your program has an Ag Begin and Ag End block.</td></tr>
+    <tr><td>Bluetooth connected but nothing happens when I click Run</td><td>Check the Console tab for error messages. Make sure your program has an Code Start and Code End block.</td></tr>
     <tr><td>Robot moves but in the wrong direction</td><td>Your left and right motor assignments may be swapped. In the Robot Config block, try switching the Left and Right motor numbers.</td></tr>
     <tr><td>Distance moves are inaccurate</td><td>Check that your Wheel Diameter and Wheelbase values in the Robot Config block match your actual robot measurements in mm.</td></tr>
     <tr><td>Gyro turns are stopping short or overshooting</td><td>The gyro coast margin is tuned for 50% speed. If you changed speed, some variation is expected.</td></tr>
@@ -634,7 +634,7 @@ ag.<span class="fn">End</span>()</pre>
   <h2 class="section" id="tips">Quick Tips</h2>
 
   <ul style="color:rgba(255,255,255,.85);margin:0 0 14px 20px;">
-    <li style="margin-bottom:10px;">Always start every program with <span class="blk blk-control">🌾 Ag Begin</span> and end with <span class="blk blk-control">🌾 Ag End</span>.</li>
+    <li style="margin-bottom:10px;">Always start every program with <span class="blk blk-control">🌾 Code Start</span> and end with <span class="blk blk-control">🌾 Code End</span>.</li>
     <li style="margin-bottom:10px;">Always put the <span class="blk blk-move">🤖 Robot Config</span> block before any movement blocks.</li>
     <li style="margin-bottom:10px;">Use <strong>Print blocks</strong> to print sensor values to the Console while your program runs — this is the best way to debug.</li>
     <li style="margin-bottom:10px;">Use <strong>Run</strong> for quick testing. Use <strong>Upload to Slot</strong> when your program is ready for competition.</li>
@@ -647,7 +647,7 @@ ag.<span class="fn">End</span>()</pre>
 
   <div style="margin-top:48px;padding-top:24px;border-top:1px solid #2a4a2a;
     font-size:.75rem;color:rgba(255,255,255,.35);text-align:center;">
-    AgRobotics Programming App — Powered by PITSCO Education
+    TITAN for AgRobotics App — Powered by PITSCO Education
   </div>
 
 </main>

@@ -7,22 +7,22 @@
 #  ramps back down to a stop. Useful for smooth acceleration
 #  and understanding how setMovementSpeed works while moving.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
 
 # Start moving slowly
-ag.setMovementSpeed(20)
-ag.startMoving('forward')
+titan.setMovementSpeed(20)
+titan.startMoving('forward')
 
 # Ramp up speed in steps
 for speed in range(20, 81, 10):
-    ag.setMovementSpeed(speed)
+    titan.setMovementSpeed(speed)
     print('Speed:', speed, '%')
     time.sleep(0.4)
 
@@ -31,10 +31,10 @@ time.sleep(1.0)
 
 # Ramp back down
 for speed in range(80, 19, -10):
-    ag.setMovementSpeed(speed)
+    titan.setMovementSpeed(speed)
     print('Speed:', speed, '%')
     time.sleep(0.4)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

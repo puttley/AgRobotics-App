@@ -7,33 +7,33 @@
 #  instead of sharp pivot turns. Steering value ranges from
 #  -100 (hard left) to 0 (straight) to +100 (hard right).
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 # Drive straight
-ag.startMoving('forward')
-ag.setSteeringControl(0)
+titan.startMoving('forward')
+titan.setSteeringControl(0)
 time.sleep(1.5)
 
 # Gentle right arc
-ag.setSteeringControl(30)
+titan.setSteeringControl(30)
 time.sleep(1.5)
 
 # Straight again
-ag.setSteeringControl(0)
+titan.setSteeringControl(0)
 time.sleep(1.5)
 
 # Gentle left arc
-ag.setSteeringControl(-30)
+titan.setSteeringControl(-30)
 time.sleep(1.5)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

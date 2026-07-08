@@ -13,19 +13,19 @@
 #  Temperature is shown in both Celsius and Fahrenheit.
 #  Humidity is shown as a percentage (0–100%).
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Temperature & Humidity Sensor (DHT11)')
 print('Plug sensor into sensor port 1')
 print('')
 
 while True:
-    temp_c = ag.getTHSensor(1, 'temp', 'c')
-    temp_f = ag.getTHSensor(1, 'temp', 'f')
-    humid  = ag.getTHSensor(1, 'humid')
+    temp_c = titan.getTHSensor(1, 'temp', 'c')
+    temp_f = titan.getTHSensor(1, 'temp', 'f')
+    humid  = titan.getTHSensor(1, 'humid')
 
     print('Temperature: {}°C  /  {}°F'.format(temp_c, temp_f))
     print('Humidity   : {}%'.format(humid))
@@ -33,4 +33,4 @@ while True:
 
     time.sleep(2.0)   # DHT11 needs ~1s between readings; 2s gives comfortable margin
 
-ag.End()
+titan.End()

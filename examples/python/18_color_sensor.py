@@ -7,17 +7,17 @@
 #  Plug the sensor into sensor port 1.
 #  Try holding colored cards in front of the sensor!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Color Sensor — hold colored objects in front of the sensor')
 print('')
 
 while True:
-    color = ag.getColorName(1)
+    color = titan.getColorName(1)
     print('Color detected:', color)
     time.sleep(0.3)
 
-ag.End()
+titan.End()

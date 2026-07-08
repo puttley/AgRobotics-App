@@ -4,20 +4,20 @@
 #  Level     : Intermediate
 #  Hardware  : Grove 6-Axis IMU (SKU 105020012) on sensor port 1
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors4WD(1, 2, 3, 4)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors4WD(1, 2, 3, 4)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 for side in range(4):
-    ag.moveForward(30, 'cm', True)
-    ag.imuTurn('right', 90, 1)
+    titan.moveForward(30, 'cm', True)
+    titan.imuTurn('right', 90, 1)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

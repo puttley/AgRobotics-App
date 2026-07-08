@@ -7,38 +7,38 @@
 #  then reacts differently depending on which color it sees.
 #  Red = stop, Green = turn right, Blue = turn left.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(40)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(40)
 
-ag.startMoving('forward')
+titan.startMoving('forward')
 print('Driving — watching for colors...')
 
 while True:
-    color = ag.getColorName(1)
+    color = titan.getColorName(1)
 
     if color == 'red':
-        ag.stopMoving()
-        ag.setTone(220, 0.3)
+        titan.stopMoving()
+        titan.setTone(220, 0.3)
         print('Red detected — stopping!')
         break
 
     elif color == 'green':
-        ag.turnDegrees('right', 90, True)
-        ag.startMoving('forward')
+        titan.turnDegrees('right', 90, True)
+        titan.startMoving('forward')
         print('Green detected — turning right')
 
     elif color == 'blue':
-        ag.turnDegrees('left', 90, True)
-        ag.startMoving('forward')
+        titan.turnDegrees('left', 90, True)
+        titan.startMoving('forward')
         print('Blue detected — turning left')
 
     time.sleep(0.1)
 
-ag.End()
+titan.End()

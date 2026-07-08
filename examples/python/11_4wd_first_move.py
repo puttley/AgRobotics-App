@@ -10,18 +10,18 @@
 #    Left side  : Motors 1 and 2
 #    Right side : Motors 3 and 4
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 # 4WD config — two motors per side
-ag.setMovementMotors4WD(1, 2, 3, 4)   # Left1, Left2, Right1, Right2
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors4WD(1, 2, 3, 4)   # Left1, Left2, Right1, Right2
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
-ag.moveForward(30, 'cm', True)
-ag.stopMoving()
+titan.moveForward(30, 'cm', True)
+titan.stopMoving()
 
-ag.End()
+titan.End()

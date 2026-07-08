@@ -17,23 +17,23 @@
 #    • Spin slowly — small rate, angle grows slowly
 #    • Spin fast — large rate, angle grows quickly
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Gyro Turn Rate Monitor')
 print('Angle = total degrees rotated since reset')
 print('Rate  = how fast rotating right now (deg/s)')
 print('')
 
-ag.resetIMUAngle(1)
+titan.resetIMUAngle(1)
 
 prev_angle = 0.0
 prev_time  = time.ticks_ms()
 
 while True:
-    angle     = ag.getIMUAngle(1)
+    angle     = titan.getIMUAngle(1)
     now       = time.ticks_ms()
     elapsed_s = time.ticks_diff(now, prev_time) / 1000.0
 
@@ -48,4 +48,4 @@ while True:
     prev_time  = now
     time.sleep(0.1)
 
-ag.End()
+titan.End()

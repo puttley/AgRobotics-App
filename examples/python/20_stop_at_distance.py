@@ -7,30 +7,30 @@
 #  closer than 150mm, then stops.
 #  Great introduction to sensor-triggered movement!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(40)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(40)
 
 STOP_DISTANCE = 150   # stop when object is closer than 150mm
 
 print('Driving forward — will stop when object detected within', STOP_DISTANCE, 'mm')
 
-ag.startMoving('forward')
+titan.startMoving('forward')
 
 while True:
-    distance = ag.getTOFSensor(1)
+    distance = titan.getTOFSensor(1)
     print('Distance:', distance, 'mm')
     if distance < STOP_DISTANCE:
         break
     time.sleep(0.05)
 
-ag.stopMoving()
+titan.stopMoving()
 print('Object detected — stopped!')
 
-ag.End()
+titan.End()

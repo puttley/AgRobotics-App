@@ -7,23 +7,23 @@
 #  The robot turns right 90 degrees, drives forward, then
 #  turns left 90 degrees and drives forward again.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 # Move forward, turn right, move forward, turn left
-ag.moveForward(20, 'cm', True)
-ag.turnDegrees('right', 90, True)
-ag.moveForward(20, 'cm', True)
-ag.turnDegrees('left', 90, True)
-ag.moveForward(20, 'cm', True)
+titan.moveForward(20, 'cm', True)
+titan.turnDegrees('right', 90, True)
+titan.moveForward(20, 'cm', True)
+titan.turnDegrees('left', 90, True)
+titan.moveForward(20, 'cm', True)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

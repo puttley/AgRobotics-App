@@ -8,33 +8,33 @@
 #  than encoder-based turns on slippery or dusty surfaces.
 #  Demonstrates 90°, 180°, and 360° gyro turns.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 # 90-degree right turn using gyro
 print('Gyro turn: 90 right')
-ag.imuTurn('right', 90, 1)
+titan.imuTurn('right', 90, 1)
 time.sleep(0.5)
 
 # 90-degree left turn using gyro
 print('Gyro turn: 90 left')
-ag.imuTurn('left', 90, 1)
+titan.imuTurn('left', 90, 1)
 time.sleep(0.5)
 
 # 180-degree turn
 print('Gyro turn: 180')
-ag.imuTurn('right', 180, 1)
+titan.imuTurn('right', 180, 1)
 time.sleep(0.5)
 
 # Full 360-degree spin
 print('Gyro turn: 360')
-ag.imuTurn('right', 360, 1)
+titan.imuTurn('right', 360, 1)
 
-ag.End()
+titan.End()

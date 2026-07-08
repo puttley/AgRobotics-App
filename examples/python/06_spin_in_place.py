@@ -7,23 +7,23 @@
 #  then left. Good for testing that both motors are working
 #  and that your wheelbase measurement is accurate.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 # Spin right 360 degrees
-ag.turnDegrees('right', 360, True)
+titan.turnDegrees('right', 360, True)
 time.sleep(0.5)
 
 # Spin left 360 degrees back to start
-ag.turnDegrees('left', 360, True)
+titan.turnDegrees('left', 360, True)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

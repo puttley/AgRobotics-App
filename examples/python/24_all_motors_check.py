@@ -7,18 +7,18 @@
 #  motors are connected and spinning in the right direction.
 #  Great for setup and troubleshooting!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 for motor in range(1, 5):
     print('Testing motor', motor, '...')
-    ag.setMotorSpeed(motor, 60)
+    titan.setMotorSpeed(motor, 60)
     time.sleep(1.5)
-    ag.setMotorStop(motor, 'brake')
+    titan.setMotorStop(motor, 'brake')
     time.sleep(0.5)
 
 print('All motors checked!')
 
-ag.End()
+titan.End()

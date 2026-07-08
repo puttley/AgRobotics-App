@@ -8,27 +8,27 @@
 #  When on the line, drive forward.
 #  When off the line, turn to find it again.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(35)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(35)
 
 print('Line follower running — place robot on a dark line')
 
 while True:
-    on_line = ag.getLineSensor(1)
+    on_line = titan.getLineSensor(1)
     if on_line:
         # On the line — drive straight
-        ag.startMoving('forward')
-        ag.setSteeringControl(0)
+        titan.startMoving('forward')
+        titan.setSteeringControl(0)
     else:
         # Off the line — turn right to find it
-        ag.setSteeringControl(50)
+        titan.setSteeringControl(50)
     time.sleep(0.02)
 
-ag.End()
+titan.End()

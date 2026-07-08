@@ -7,10 +7,10 @@
 #  so you can confirm direction and encoder counts are correct.
 #  Run this before competition to verify all motors are healthy.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('=== Motor Diagnostic ===')
 print('Each motor will run for 1.5 seconds')
@@ -18,12 +18,12 @@ print('Check that it spins in the FORWARD direction')
 print('')
 
 for motor in range(1, 5):
-    ag.resetEncoder(motor)
+    titan.resetEncoder(motor)
     print('Motor', motor, '— running forward...')
-    ag.setMotorSpeed(motor, 60)
+    titan.setMotorSpeed(motor, 60)
     time.sleep(1.5)
-    ag.setMotorStop(motor, 'brake')
-    enc = ag.getEncoder(motor)
+    titan.setMotorStop(motor, 'brake')
+    enc = titan.getEncoder(motor)
     print('  Encoder count after forward run:', enc)
     if enc > 0:
         print('  Direction: OK')
@@ -34,4 +34,4 @@ for motor in range(1, 5):
 
 print('Motor check complete!')
 
-ag.End()
+titan.End()

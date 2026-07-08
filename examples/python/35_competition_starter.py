@@ -9,28 +9,28 @@
 #
 #  Press the SELECT button to start the program.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 # ── Robot Configuration ───────────────────────────────────────────────
-ag.setMovementMotors(1, 2)        # Left motor=1, Right motor=2
-ag.setMovementWheelDiameter(80)   # Wheel diameter in mm
-ag.setMovementWheelbase(185)      # Distance between wheels in mm
-ag.setMovementSpeed(50)           # Starting speed (0–100%)
+titan.setMovementMotors(1, 2)        # Left motor=1, Right motor=2
+titan.setMovementWheelDiameter(80)   # Wheel diameter in mm
+titan.setMovementWheelbase(185)      # Distance between wheels in mm
+titan.setMovementSpeed(50)           # Starting speed (0–100%)
 
 # Ready signal — green pixels and a beep
-ag.setPixelColor('ABCD', '#00cc00', 30)
-ag.setTone(880, 0.1)
+titan.setPixelColor('ABCD', '#00cc00', 30)
+titan.setTone(880, 0.1)
 time.sleep(0.3)
-ag.setPixelOff('ABCD')
+titan.setPixelOff('ABCD')
 
 # ── Your Competition Code Below ───────────────────────────────────────
-# Add your ag.moveForward(), ag.imuTurn(), ag.getTOFSensor() calls here
+# Add your titan.moveForward(), titan.imuTurn(), titan.getTOFSensor() calls here
 
 
 
 # ── End ───────────────────────────────────────────────────────────────
-ag.setTone(440, 0.3)   # done beep
-ag.End()
+titan.setTone(440, 0.3)   # done beep
+titan.End()

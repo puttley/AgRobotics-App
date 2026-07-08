@@ -17,10 +17,10 @@
 #  Positive angle = clockwise (right)
 #  Negative angle = counterclockwise (left)
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Gyro Angle Monitor')
 print('Rotate the robot and watch the angle change')
@@ -28,11 +28,11 @@ print('Positive = clockwise   Negative = counterclockwise')
 print('')
 
 # Zero the angle accumulator before reading
-ag.resetIMUAngle(1)
+titan.resetIMUAngle(1)
 
 while True:
-    angle = ag.getIMUAngle(1)
+    angle = titan.getIMUAngle(1)
     print('Angle: {:.1f} degrees'.format(angle))
     time.sleep(0.1)
 
-ag.End()
+titan.End()

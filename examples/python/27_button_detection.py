@@ -7,23 +7,23 @@
 #  The robot has four buttons: A, B, C, and D.
 #  Watch the console and press each button to see it detected!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Press buttons A, B, C, or D — watch the console!')
 print('')
 
 while True:
-    if ag.getButtonStatus('a'):
+    if titan.getButtonStatus('a'):
         print('Button A pressed!')
-    if ag.getButtonStatus('b'):
+    if titan.getButtonStatus('b'):
         print('Button B pressed!')
-    if ag.getButtonStatus('c'):
+    if titan.getButtonStatus('c'):
         print('Button C pressed!')
-    if ag.getButtonStatus('d'):
+    if titan.getButtonStatus('d'):
         print('Button D pressed!')
     time.sleep(0.05)
 
-ag.End()
+titan.End()

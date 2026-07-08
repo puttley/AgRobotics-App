@@ -3,30 +3,30 @@
 #  Category  : Movement / 4WD
 #  Level     : Intermediate
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors4WD(1, 2, 3, 4)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
+titan.setMovementMotors4WD(1, 2, 3, 4)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
 
-ag.setMovementSpeed(20)
-ag.startMoving('forward')
+titan.setMovementSpeed(20)
+titan.startMoving('forward')
 
 for speed in range(20, 81, 10):
-    ag.setMovementSpeed(speed)
+    titan.setMovementSpeed(speed)
     print('Speed:', speed, '%')
     time.sleep(0.4)
 
 time.sleep(1.0)
 
 for speed in range(80, 19, -10):
-    ag.setMovementSpeed(speed)
+    titan.setMovementSpeed(speed)
     print('Speed:', speed, '%')
     time.sleep(0.4)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

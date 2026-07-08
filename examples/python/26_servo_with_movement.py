@@ -7,31 +7,31 @@
 #  Shows how servos can operate independently of drive motors —
 #  useful for attachments like a sorting gate or plow.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(40)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(40)
 
 # Start driving forward
-ag.startMoving('forward')
+titan.startMoving('forward')
 
 # Sweep servo while driving
 for cycle in range(3):
-    ag.setServoPosition(1, 0)
+    titan.setServoPosition(1, 0)
     time.sleep(0.5)
-    ag.setServoPosition(1, 90)
+    titan.setServoPosition(1, 90)
     time.sleep(0.5)
-    ag.setServoPosition(1, 180)
+    titan.setServoPosition(1, 180)
     time.sleep(0.5)
-    ag.setServoPosition(1, 90)
+    titan.setServoPosition(1, 90)
     time.sleep(0.5)
 
-ag.stopMoving()
-ag.setServoPosition(1, 90)   # center servo
+titan.stopMoving()
+titan.setServoPosition(1, 90)   # center servo
 
-ag.End()
+titan.End()

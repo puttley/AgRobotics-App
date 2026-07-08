@@ -10,24 +10,24 @@
 #    • Make sure your robot is on the floor with space ahead
 #    • Check that Left Motor = 1 and Right Motor = 2
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 # Set up the robot — tell it which motors are left and right,
 # and the size of the wheels and the distance between them
-ag.setMovementMotors(1, 2)           # Left motor=1, Right motor=2
-ag.setMovementWheelDiameter(80)      # Wheel diameter in mm
-ag.setMovementWheelbase(185)         # Distance between wheels in mm
+titan.setMovementMotors(1, 2)           # Left motor=1, Right motor=2
+titan.setMovementWheelDiameter(80)      # Wheel diameter in mm
+titan.setMovementWheelbase(185)         # Distance between wheels in mm
 
 # Set how fast the robot moves (0–100%)
-ag.setMovementSpeed(50)
+titan.setMovementSpeed(50)
 
 # Drive forward 30 cm, then wait until it arrives before continuing
-ag.moveForward(30, 'cm', True)
+titan.moveForward(30, 'cm', True)
 
 # Stop the motors
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

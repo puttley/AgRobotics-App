@@ -14,23 +14,23 @@
 #  Encoder counts increase as the motor turns forward,
 #  and decrease when it turns backward.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 # Reset both encoders to zero before reading
-ag.resetEncoder(1)
-ag.resetEncoder(2)
+titan.resetEncoder(1)
+titan.resetEncoder(2)
 
 print('Encoder Values — spin the wheels by hand or let the robot drive')
 print('Motor 1 = Left,  Motor 2 = Right')
 print('')
 
 while True:
-    enc1 = ag.getEncoder(1)
-    enc2 = ag.getEncoder(2)
+    enc1 = titan.getEncoder(1)
+    enc2 = titan.getEncoder(2)
     print('Motor 1:', enc1, '  Motor 2:', enc2)
     time.sleep(0.2)
 
-ag.End()
+titan.End()

@@ -7,43 +7,43 @@
 #  Press A, B, C, or D to see and hear the response.
 #  Press all four to exit.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setPixelOff('ABCD')
+titan.setPixelOff('ABCD')
 print('Press A, B, C, or D')
 
 while True:
-    if ag.getButtonStatus('a'):
-        ag.setPixelOff('ABCD')
-        ag.setPixelColor('A', '#ff0000', 50)
-        ag.setTone(440, 0.15)
+    if titan.getButtonStatus('a'):
+        titan.setPixelOff('ABCD')
+        titan.setPixelColor('A', '#ff0000', 50)
+        titan.setTone(440, 0.15)
         print('A — Red')
         time.sleep(0.3)
 
-    elif ag.getButtonStatus('b'):
-        ag.setPixelOff('ABCD')
-        ag.setPixelColor('B', '#00cc00', 50)
-        ag.setTone(550, 0.15)
+    elif titan.getButtonStatus('b'):
+        titan.setPixelOff('ABCD')
+        titan.setPixelColor('B', '#00cc00', 50)
+        titan.setTone(550, 0.15)
         print('B — Green')
         time.sleep(0.3)
 
-    elif ag.getButtonStatus('c'):
-        ag.setPixelOff('ABCD')
-        ag.setPixelColor('C', '#0044ff', 50)
-        ag.setTone(660, 0.15)
+    elif titan.getButtonStatus('c'):
+        titan.setPixelOff('ABCD')
+        titan.setPixelColor('C', '#0044ff', 50)
+        titan.setTone(660, 0.15)
         print('C — Blue')
         time.sleep(0.3)
 
-    elif ag.getButtonStatus('d'):
-        ag.setPixelOff('ABCD')
-        ag.setPixelColor('D', '#ccaa00', 50)
-        ag.setTone(880, 0.15)
+    elif titan.getButtonStatus('d'):
+        titan.setPixelOff('ABCD')
+        titan.setPixelColor('D', '#ccaa00', 50)
+        titan.setTone(880, 0.15)
         print('D — Yellow')
         time.sleep(0.3)
 
     time.sleep(0.02)
 
-ag.End()
+titan.End()

@@ -7,10 +7,10 @@
 #  Each note is defined by its frequency (Hz) and duration (seconds).
 #  This plays a basic do-re-mi scale!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 # Note frequencies for a C major scale
 notes = [
@@ -27,9 +27,9 @@ notes = [
 print('Playing do-re-mi scale...')
 
 for freq, dur in notes:
-    ag.setTone(freq, dur)
+    titan.setTone(freq, dur)
     time.sleep(0.05)   # brief gap between notes
 
 print('Done!')
 
-ag.End()
+titan.End()

@@ -6,25 +6,25 @@
 #  The robot drives forward 30 cm, pauses, then returns to its
 #  starting position by driving backward 30 cm.
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
-ag.setMovementMotors(1, 2)
-ag.setMovementWheelDiameter(80)
-ag.setMovementWheelbase(185)
-ag.setMovementSpeed(50)
+titan.setMovementMotors(1, 2)
+titan.setMovementWheelDiameter(80)
+titan.setMovementWheelbase(185)
+titan.setMovementSpeed(50)
 
 # Drive forward
-ag.moveForward(30, 'cm', True)
+titan.moveForward(30, 'cm', True)
 
 # Short pause so you can see the robot stop
 time.sleep(0.5)
 
 # Drive back to start
-ag.moveBackward(30, 'cm', True)
+titan.moveBackward(30, 'cm', True)
 
-ag.stopMoving()
+titan.stopMoving()
 
-ag.End()
+titan.End()

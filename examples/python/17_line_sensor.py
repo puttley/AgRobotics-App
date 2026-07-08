@@ -8,17 +8,17 @@
 #  Plug the sensor into sensor port 1.
 #  Try holding the sensor over a dark line on white paper!
 # ─────────────────────────────────────────────────────────────────────
-import ag
+import titan
 import time
 
-ag.Begin()
+titan.Begin()
 
 print('Line Sensor — True = line detected, False = no line')
 print('')
 
 while True:
-    on_line = ag.getLineSensor(1)
+    on_line = titan.getLineSensor(1)
     print('On line:', on_line)
     time.sleep(0.2)
 
-ag.End()
+titan.End()
