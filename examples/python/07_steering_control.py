@@ -12,26 +12,25 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 # Drive straight
-titan.startMoving('forward')
-titan.setSteeringControl(0)
+titan.startMovingWithSteering(0)
 time.sleep(1.5)
 
 # Gentle right arc
-titan.setSteeringControl(30)
+titan.startMovingWithSteering(30)
 time.sleep(1.5)
 
 # Straight again
-titan.setSteeringControl(0)
+titan.startMovingWithSteering(0)
 time.sleep(1.5)
 
 # Gentle left arc
-titan.setSteeringControl(-30)
+titan.startMovingWithSteering(-30)
 time.sleep(1.5)
 
 titan.stopMoving()

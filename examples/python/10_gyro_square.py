@@ -13,13 +13,13 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 for side in range(4):
-    titan.moveForward(30, 'cm', True)
+    titan.moveForDistance(30, 'cm', True)
     titan.imuTurn('right', 90, 1)
 
 titan.stopMoving()

@@ -28,8 +28,8 @@ print('Motor 1 = Left,  Motor 2 = Right')
 print('')
 
 while True:
-    enc1 = titan.getEncoder(1)
-    enc2 = titan.getEncoder(2)
+    enc1 = titan.getEncoderCount(1)
+    enc2 = titan.getEncoderCount(2)
     print('Motor 1:', enc1, '  Motor 2:', enc2)
     time.sleep(0.2)
 

@@ -12,10 +12,13 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(40)
+
+# set servo speed
+titan.setServoSpeed(1,80)
 
 # Start driving forward
 titan.startMoving('forward')
@@ -23,13 +26,13 @@ titan.startMoving('forward')
 # Sweep servo while driving
 for cycle in range(3):
     titan.setServoPosition(1, 0)
-    time.sleep(0.5)
+    time.sleep(1)
     titan.setServoPosition(1, 90)
-    time.sleep(0.5)
+    time.sleep(1)
     titan.setServoPosition(1, 180)
-    time.sleep(0.5)
+    time.sleep(1)
     titan.setServoPosition(1, 90)
-    time.sleep(0.5)
+    time.sleep(1)
 
 titan.stopMoving()
 titan.setServoPosition(1, 90)   # center servo

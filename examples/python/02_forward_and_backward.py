@@ -11,19 +11,19 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 # Drive forward
-titan.moveForward(30, 'cm', True)
+titan.moveForDistance(30, 'cm', True)
 
 # Short pause so you can see the robot stop
 time.sleep(0.5)
 
 # Drive back to start
-titan.moveBackward(30, 'cm', True)
+titan.moveBackDistance(30, 'cm', True)
 
 titan.stopMoving()
 

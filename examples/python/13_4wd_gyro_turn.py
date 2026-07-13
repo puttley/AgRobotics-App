@@ -15,7 +15,7 @@ titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 for side in range(4):
-    titan.moveForward(30, 'cm', True)
+    titan.moveForDistance(30, 'cm', True)
     titan.imuTurn('right', 90, 1)
 
 titan.stopMoving()

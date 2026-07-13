@@ -11,14 +11,14 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 # Repeat 4 times to complete the square
 for side in range(4):
-    titan.moveForward(30, 'cm', True)
+    titan.moveForDistance(30, 'cm', True)
     titan.turnDegrees('right', 90, True)
 
 titan.stopMoving()

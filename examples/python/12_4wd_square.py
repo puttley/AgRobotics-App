@@ -2,6 +2,7 @@
 #  Example 12 — 4WD Square Pattern
 #  Category  : Movement / 4WD
 #  Level     : Beginner
+#  4WD configurations do not turn as accurate as 2WD - turning parameters may need adjustment
 # ─────────────────────────────────────────────────────────────────────
 import titan
 import time
@@ -14,7 +15,7 @@ titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
 
 for side in range(4):
-    titan.moveForward(30, 'cm', True)
+    titan.moveForDistance(30, 'cm', True)
     titan.turnDegrees('right', 90, True)
 
 titan.stopMoving()

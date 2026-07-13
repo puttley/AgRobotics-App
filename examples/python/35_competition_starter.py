@@ -15,7 +15,7 @@ import time
 titan.Begin()
 
 # ── Robot Configuration ───────────────────────────────────────────────
-titan.setMovementMotors(1, 2)        # Left motor=1, Right motor=2
+titan.setMovementMotors2WD(1, 2)     # Left motor=1, Right motor=2
 titan.setMovementWheelDiameter(80)   # Wheel diameter in mm
 titan.setMovementWheelbase(185)      # Distance between wheels in mm
 titan.setMovementSpeed(50)           # Starting speed (0–100%)
@@ -27,8 +27,9 @@ time.sleep(0.3)
 titan.setPixelOff('ABCD')
 
 # ── Your Competition Code Below ───────────────────────────────────────
-# Add your titan.moveForward(), titan.imuTurn(), titan.getTOFSensor() calls here
-
+while True:  # forever loop
+    # Add your titan.moveForDistance(), titan.imuTurn(), titan.getTOFSensor() calls here (remove pass after addding code)
+  pass
 
 
 # ── End ───────────────────────────────────────────────────────────────

@@ -295,7 +295,7 @@
     <tr><td>Load Code</td><td>Opens a .xml (blocks) or .py (Python) file from your computer into a new tab.</td></tr>
     <tr><td>Save Program</td><td>Saves the current tab — .xml for block tabs, .py for Python tabs.</td></tr>
     <tr><td>Save Python</td><td>Saves the generated MicroPython code from a blocks tab as a .py file.</td></tr>
-    <tr><td>Examples</td><td>Opens the Examples Browser — 38 ready-to-use example programs.</td></tr>
+    <tr><td>Examples</td><td>Opens the Examples Browser — 41 ready-to-use example programs.</td></tr>
     <tr><td>Rename Bluetooth Device</td><td>Changes the robot's Bluetooth name (requires USB connection).</td></tr>
     <tr><td>Firmware Update</td><td>Flashes new firmware to the controller (requires USB connection).</td></tr>
   </table>
@@ -393,7 +393,7 @@
       <strong>Add a Robot Config block.</strong> In the toolbox, click <strong>🤖 Movement</strong>. Drag the <span class="blk blk-move">🤖 Robot Config</span> block onto the workspace. This sets up your motors and wheel size. Leave the defaults: Left=1, Right=2, Diameter=80, Wheelbase=185.
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
-      <strong>Add Begin and End.</strong> Click <strong>🌾 Control</strong> in the toolbox. Drag <span class="blk blk-control">🌾 Code Start</span> to the top of your program and <span class="blk blk-control">🌾 Code End</span> to the bottom. Every program needs these — Begin waits for you to press Select before starting, and End stops everything cleanly.
+      <strong>Add Begin and End.</strong> Click <strong>🌾 Control</strong> in the toolbox. Drag <span class="blk blk-control">🌾 Code Begin</span> to the top of your program and <span class="blk blk-control">🌾 Code End</span> to the bottom. Every program needs these — Begin waits for you to press Select before starting, and End stops everything cleanly.
     </div></div>
     <div class="step"><div class="step-num"></div><div class="step-body">
       <strong>Add a Set Speed block.</strong> From Movement, add <span class="blk blk-move">🤖 Set Speed 50%</span> after the Config block. This sets how fast the robot moves.
@@ -408,7 +408,7 @@
 
   <p>Your program should look like this from top to bottom:</p>
   <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-    <span class="blk blk-control">🌾 Code Start</span>
+    <span class="blk blk-control">🌾 Code Begin</span>
     <span class="blk blk-move">🤖 Robot Config Left:1 Right:2 Diam:80 WB:185</span>
     <span class="blk blk-move">🤖 Set Speed 50%</span>
     <span class="blk blk-move">🤖 Move Forward 30 cm Wait:Yes</span>
@@ -453,11 +453,11 @@ titan.<span class="fn">End</span>()</pre>
 
 titan.<span class="fn">Begin</span>()
 
-titan.<span class="fn">setMovementMotors</span>(<span class="num">1</span>, <span class="num">2</span>)
+titan.<span class="fn">setMovementMotors2WD</span>(<span class="num">1</span>, <span class="num">2</span>)
 titan.<span class="fn">setMovementWheelDiameter</span>(<span class="num">80</span>)
 titan.<span class="fn">setMovementWheelbase</span>(<span class="num">185</span>)
 titan.<span class="fn">setMovementSpeed</span>(<span class="num">50</span>)
-titan.<span class="fn">moveForward</span>(<span class="num">30</span>, <span class="str">'cm'</span>, <span class="kw">True</span>)
+titan.<span class="fn">moveForDistance</span>(<span class="num">30</span>, <span class="str">'cm'</span>, <span class="kw">True</span>)
 titan.<span class="fn">stopMoving</span>()
 
 titan.<span class="fn">End</span>()</pre>
@@ -472,7 +472,7 @@ titan.<span class="fn">End</span>()</pre>
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <h2 class="section" id="examples">Using the Examples Browser</h2>
 
-  <p>The app comes with 38 ready-to-use example programs covering every category of blocks. They're a great way to learn by seeing working code.</p>
+  <p>The app comes with 41 ready-to-use example programs covering every category of blocks. They're a great way to learn by seeing working code.</p>
 
   <div class="steps">
     <div class="step"><div class="step-num"></div><div class="step-body">Click <strong>File → Examples</strong> in the toolbar.</div></div>
@@ -585,7 +585,7 @@ titan.<span class="fn">End</span>()</pre>
 
   <p>A simple example — print TOF sensor readings in a loop:</p>
   <div class="ui-mock" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-    <span class="blk blk-control">🌾 Code Start</span>
+    <span class="blk blk-control">🌾 Code Begin</span>
     <span class="blk blk-loop" style="padding-left:12px;">🔁 Repeat While True</span>
     <span class="blk blk-control" style="margin-left:24px;">🖨 Print: <span class="blk blk-sensor" style="font-size:.68rem;">📡 TOF Distance port 1</span></span>
     <span class="blk blk-control" style="margin-left:24px;">⏱ Wait 0.2 sec</span>
@@ -620,7 +620,7 @@ titan.<span class="fn">End</span>()</pre>
   <table>
     <tr><th>Problem</th><th>What to Try</th></tr>
     <tr><td>Robot doesn't appear in the Bluetooth list</td><td>Make sure the robot is powered on. Move closer. Check that Bluetooth isn't disabled (hold Button B at power-on to toggle). Refresh the browser and try again.</td></tr>
-    <tr><td>Bluetooth connected but nothing happens when I click Run</td><td>Check the Console tab for error messages. Make sure your program has an Code Start and Code End block.</td></tr>
+    <tr><td>Bluetooth connected but nothing happens when I click Run</td><td>Check the Console tab for error messages. Make sure your program has a Code Begin and Code End block.</td></tr>
     <tr><td>Robot moves but in the wrong direction</td><td>Your left and right motor assignments may be swapped. In the Robot Config block, try switching the Left and Right motor numbers.</td></tr>
     <tr><td>Distance moves are inaccurate</td><td>Check that your Wheel Diameter and Wheelbase values in the Robot Config block match your actual robot measurements in mm.</td></tr>
     <tr><td>Gyro turns are stopping short or overshooting</td><td>The gyro coast margin is tuned for 50% speed. If you changed speed, some variation is expected.</td></tr>
@@ -634,7 +634,7 @@ titan.<span class="fn">End</span>()</pre>
   <h2 class="section" id="tips">Quick Tips</h2>
 
   <ul style="color:rgba(255,255,255,.85);margin:0 0 14px 20px;">
-    <li style="margin-bottom:10px;">Always start every program with <span class="blk blk-control">🌾 Code Start</span> and end with <span class="blk blk-control">🌾 Code End</span>.</li>
+    <li style="margin-bottom:10px;">Always start every program with <span class="blk blk-control">🌾 Code Begin</span> and end with <span class="blk blk-control">🌾 Code End</span>.</li>
     <li style="margin-bottom:10px;">Always put the <span class="blk blk-move">🤖 Robot Config</span> block before any movement blocks.</li>
     <li style="margin-bottom:10px;">Use <strong>Print blocks</strong> to print sensor values to the Console while your program runs — this is the best way to debug.</li>
     <li style="margin-bottom:10px;">Use <strong>Run</strong> for quick testing. Use <strong>Upload to Slot</strong> when your program is ready for competition.</li>
@@ -642,7 +642,7 @@ titan.<span class="fn">End</span>()</pre>
     <li style="margin-bottom:10px;">The <strong>Stop / Reset</strong> button always works — use it any time the robot behaves unexpectedly.</li>
     <li style="margin-bottom:10px;">On competition day, disable Bluetooth by holding Button B at power-on (you'll hear a low tone). This prevents accidental connections from other devices.</li>
     <li style="margin-bottom:10px;">The Block Reference (Help → Block Reference) has details on every single block — keep it open in another tab while you work.</li>
-    <li style="margin-bottom:10px;">Load one of the 38 example programs to see how blocks connect together. Modify the example to learn how each part works.</li>
+    <li style="margin-bottom:10px;">Load one of the 41 example programs to see how blocks connect together. Modify the example to learn how each part works.</li>
   </ul>
 
   <div style="margin-top:48px;padding-top:24px;border-top:1px solid #2a4a2a;

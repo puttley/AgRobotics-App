@@ -13,11 +13,13 @@ titan.Begin()
 
 print('Servo sweep — 0 to 180 degrees and back')
 
+titan.setServoSpeed(1, 80) # set servo speed
+
 # Sweep from 0 to 180 in steps of 10
 for angle in range(0, 181, 10):
     titan.setServoPosition(1, angle)
     print('Servo angle:', angle)
-    time.sleep(0.05)
+    time.sleep(0.1)
 
 time.sleep(0.5)
 
@@ -25,7 +27,7 @@ time.sleep(0.5)
 for angle in range(180, -1, -10):
     titan.setServoPosition(1, angle)
     print('Servo angle:', angle)
-    time.sleep(0.05)
+    time.sleep(0.1)
 
 print('Sweep complete')
 

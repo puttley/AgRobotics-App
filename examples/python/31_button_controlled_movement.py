@@ -13,7 +13,7 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(50)
@@ -32,24 +32,21 @@ while True:
         titan.startMoving('forward')
         titan.setPixelColor('A', '#00ff00', 30)
         moving = True
-    elif b:
+    elif c:
         titan.startMoving('backward')
         titan.setPixelColor('B', '#ffcc00', 30)
         moving = True
-    elif c:
-        titan.startMoving('forward')
-        titan.setSteeringControl(-70)
+    elif d:
+        titan.startMovingWithSteering(-70)
         titan.setPixelColor('C', '#0044ff', 30)
         moving = True
-    elif d:
-        titan.startMoving('forward')
-        titan.setSteeringControl(70)
+    elif b:
+        titan.startMovingWithSteering(70)
         titan.setPixelColor('D', '#ff0000', 30)
         moving = True
     else:
         if moving:
             titan.stopMoving()
-            titan.setSteeringControl(0)
             titan.setPixelOff('ABCD')
             moving = False
 

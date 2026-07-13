@@ -3,8 +3,8 @@
 #  Category  : Movement / 2WD
 #  Level     : Intermediate
 #
-#  The robot drives a figure-8 pattern by completing one circle
-#  to the right, then one circle to the left.
+#  The robot drives a figure-8 pattern 
+#  
 #  Uses steering control for smooth arcing turns.
 # ─────────────────────────────────────────────────────────────────────
 import titan
@@ -12,19 +12,22 @@ import time
 
 titan.Begin()
 
-titan.setMovementMotors(1, 2)
+titan.setMovementMotors2WD(1, 2)
 titan.setMovementWheelDiameter(80)
 titan.setMovementWheelbase(185)
 titan.setMovementSpeed(40)
 
 # First loop — steer right
-titan.startMoving('forward')
-titan.setSteeringControl(60)      # positive = steer right
-time.sleep(4.5)                # adjust time to complete one loop
+titan.startMovingWithSteering(60)   # postive steer right
+time.sleep(5)
 
 # Second loop — steer left
-titan.setSteeringControl(-60)     # negative = steer left
-time.sleep(4.5)
+titan.startMovingWithSteering(-60)  # negative steer left
+time.sleep(13)
+
+# Third loop — steer right
+titan.startMovingWithSteering(60)   # postive steer right
+time.sleep(9)
 
 titan.stopMoving()
 

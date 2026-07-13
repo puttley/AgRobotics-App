@@ -17,7 +17,7 @@ titan.Begin()
 
 # Set up the robot — tell it which motors are left and right,
 # and the size of the wheels and the distance between them
-titan.setMovementMotors(1, 2)           # Left motor=1, Right motor=2
+titan.setMovementMotors2WD(1, 2)        # Left motor=1, Right motor=2
 titan.setMovementWheelDiameter(80)      # Wheel diameter in mm
 titan.setMovementWheelbase(185)         # Distance between wheels in mm
 
@@ -25,7 +25,7 @@ titan.setMovementWheelbase(185)         # Distance between wheels in mm
 titan.setMovementSpeed(50)
 
 # Drive forward 30 cm, then wait until it arrives before continuing
-titan.moveForward(30, 'cm', True)
+titan.moveForDistance(30, 'cm', True)
 
 # Stop the motors
 titan.stopMoving()

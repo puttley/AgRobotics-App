@@ -23,7 +23,7 @@ for motor in range(1, 5):
     titan.setMotorSpeed(motor, 60)
     time.sleep(1.5)
     titan.setMotorStop(motor, 'brake')
-    enc = titan.getEncoder(motor)
+    enc = titan.getEncoderCount(motor)
     print('  Encoder count after forward run:', enc)
     if enc > 0:
         print('  Direction: OK')
